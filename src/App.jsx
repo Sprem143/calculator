@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react"
+import './App.css'
 import Navbar from "./Navbar";
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 export default function App(){
-  const [value, setValue]= useState(1);
   const[updatedValue, setUpdatedValue]= useState("null")
 // ----------Form data_---------------------
-  const [validated, setValidated] = useState(false);
   const [expression,setExpression]=useState("")
   const handleSubmit =async (event) => {
     event.preventDefault();
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-    // setValidated(true);
     let v= await fetch('http://localhost:5000/getValue',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -29,8 +19,15 @@ export default function App(){
  const setNum=(num)=>{
  setExpression((prevInput)=>prevInput+num);
  }
+ const setsq=()=>{
+ setUpdatedValue(expression*expression)
+ }
+ const setq=()=>{
+  setUpdatedValue(expression*expression*expression)
+ }
  const clearAll=()=>{
-  setExpression("")
+  setExpression("");
+  setUpdatedValue("0")
  }
  const clearOne=()=>{
   setExpression((prevInput)=>prevInput.slice(0,-1))
@@ -39,8 +36,8 @@ return(
   <div className="container-fluid">
  <Navbar/>
  <div className="cal">
-  <div className="calHeader">{expression}</div>
-  <div className="calHeader">{updatedValue}</div>
+  <div className="calHeader">I :&nbsp; {expression}</div>
+  <div className="calHeader">O :&nbsp;{updatedValue}</div>
   <div className="calBody">
     {/* ----------Row 01------------ */}
     <div className="lbtn clearAll"><Button onClick={clearAll}><p>C</p><p>L</p> <p>E</p> <p>A</p><r>R</r> </Button></div>
@@ -106,7 +103,7 @@ return(
           <Button className="btn dfjcac" onClick={()=>setNum('(')}>(</Button>
           <Button className="btn dfjcac" onClick={()=>setNum(')')}>)</Button>
           <Button className="btn dfjcac" onClick={()=>setNum('%')}>%</Button>
-          <Button className="btn dfjcac" onClick={()=>setNum('**')}>x <sup>2</sup></Button>
+          <Button className="btn dfjcac" onClick={setsq}>x <sup>2</sup></Button>
         </div>
       </div>
 
@@ -128,7 +125,7 @@ return(
           <Button className="btn dfjcac" onClick={()=>setNum()}>cot</Button>
           <Button className="btn dfjcac" onClick={()=>setNum()}>sec</Button>
           <Button className="btn dfjcac" onClick={()=>setNum()}>cosec</Button>
-          <Button className="btn dfjcac" onClick={()=>setNum()}>x <sup>3</sup></Button>
+          <Button className="btn dfjcac" onClick={()=>setq()}>x <sup>3</sup></Button>
         </div>
       </div>
   </div>
