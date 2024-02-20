@@ -1,9 +1,10 @@
 from sys import *
-
-x=eval(argv[1])
-print(x)
-  
-
-  
-
-
+import re
+exp=argv[1]
+exp=exp.replace('{','(')
+exp=exp.replace('[','(')
+exp=exp.replace(']',')')
+exp=exp.replace('}',')')
+modified_string = re.sub(r'(\d+)\(', r'\1*(', exp)
+# print(modified_string)
+print(eval(modified_string))
