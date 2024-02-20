@@ -24,7 +24,7 @@
 display: flex;
 }
 .lbtn Button{
- height: 300px;
+ height: 200px;
  width: 30px;
 }
 .lbtn Button:hover{
@@ -51,6 +51,9 @@ Button:hover{
   margin-top: 10px;background-color: navy;
   color: white;
   padding: 7px;
+}
+.angleCal{
+  width: 80vw;
 }
 .calHeader{
   height: 35px;
@@ -81,4 +84,20 @@ Button:hover{
 }
 .row1{
   display: flex;
+}
+@media screen and (max-width:576px) {
+  .cal{
+    width: 90vw;
+  }
+  .calBody{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+  .lbtn Bottom{
+    width: 50px; 
+  }
+  .btn{
+    width: 15vw;
+  }
 }
